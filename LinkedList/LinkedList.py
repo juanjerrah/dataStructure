@@ -59,17 +59,34 @@ class LinkedList:
             self.head = new_node
         self.length += 1
         return True
-
+    
+    def pop_first(self):
+        if self.length == 0:
+            return None
+        
+        curr = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+        self.length -= 1
+        return curr.value
 
 ll = LinkedList(1)
 ll.append(2)
 ll.append(6)
 ll.append(3)
 ll.prepend(9)
+
 print("Before pop")
 ll.print()
 print("After pop")
 print("Removido: ", ll.pop())
+ll.print()
+
+print("After pop first")
+print("Removido: ", ll.pop_first())
 ll.print()
 
 
