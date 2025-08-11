@@ -73,20 +73,46 @@ class LinkedList:
         self.length -= 1
         return curr.value
 
+    def remove(self, index):
+        if self.length - 1 < index:
+            return None
+        
+        if index == 0:
+            head = self.head
+            self.pop_first()
+            return head.value
+        
+        if self.length - 1 == index:
+            tail = self.tail
+            self.pop()
+            return tail.value
+        
+        count = 0
+        to_remove = self.head
+        pre = self.head
+        while to_remove:
+            if count == index:
+                pre.next = to_remove.next
+                break
+            else:
+                count += 1
+                pre = to_remove
+                to_remove = to_remove.next
+        
+        self.length -= 1
+        return to_remove.value
+        
+
+
 ll = LinkedList(1)
 ll.append(2)
 ll.append(6)
 ll.append(3)
 ll.prepend(9)
 
-print("Before pop")
+print("Before")
 ll.print()
-print("After pop")
-print("Removido: ", ll.pop())
-ll.print()
-
-print("After pop first")
-print("Removido: ", ll.pop_first())
+print("After remove", ll.remove(3))
 ll.print()
 
 
