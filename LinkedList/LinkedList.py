@@ -101,7 +101,23 @@ class LinkedList:
         
         self.length -= 1
         return to_remove.value
+
+    def get(self, index):
+        if index == self.length - 1:
+            return self.tail.value
+        if index == 0:
+            return self.head.value
         
+        target = self.head
+        count = 0
+        while target:
+            if count == index:
+                break
+            else:
+                target = target.next
+                count += 1
+
+        return target.value
 
 
 ll = LinkedList(1)
@@ -112,7 +128,6 @@ ll.prepend(9)
 
 print("Before")
 ll.print()
-print("After remove", ll.remove(3))
-ll.print()
+print("Get", ll.get(1))
 
 
